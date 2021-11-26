@@ -20,4 +20,11 @@ const createDeleteButton = () => {
     deleteButton.type = "button"
     deleteButton.innerHTML = "Delete All"
     document.querySelector('#endangered-animals-list').after(deleteButton)
+    deleteButton.addEventListener('click', function () {
+        const list = document.getElementById('endangered-animals-list')
+        while (list.hasChildNodes()) {
+            list.removeChild(list.firstChild)
+        }
+        document.querySelector('body').removeChild(this)
+    })
 }
