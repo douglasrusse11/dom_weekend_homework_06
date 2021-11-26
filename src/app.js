@@ -7,7 +7,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const form = event.target
         newListItem.textContent = `${event.target.commonName.value} - ${event.target.scientificName.value} - ${event.target.conservationStatus.value}`
         const list = document.getElementById('endangered-animals-list')
+        if (list.innerHTML === '') {
+            createDeleteButton()
+        }
         list.appendChild(newListItem)
         this.reset()
     })
 })
+
+const createDeleteButton = () => {
+    const deleteButton = document.createElement('button')
+    deleteButton.type = "button"
+    deleteButton.innerHTML = "Delete All"
+    document.querySelector('#endangered-animals-list').after(deleteButton)
+}
