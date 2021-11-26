@@ -9,6 +9,25 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>List of Endangered Animals</h1>
+    <ul id="endangered-animals-list"></ul>
+    <form id="add-animal-form">
+        <h2>Add new animal</h2>
+        <label for="common_name">Common Name</label>
+        <input type="text" name="common_name" id="common_name" placeholder="Common Name">
+        <br>
+        <label for="scientific_name">Scientific Name</label>
+        <input type="text" name="scientific_name" id="scientific_name" placeholder="Scientific Name">
+        <br>
+        <label for="conservation_status">Conservation Status</label>
+        <select name="conservation_status" id="conservation_status">
+            <option value="" selected="selected" disabled=true></option>
+            <option value="vulnerable">Vulnerable</option>
+            <option value="endangered">Endangered</option>
+            <option value="critical">Critically Endangered</option>
+        </select>
+        <br>
+        <input type="submit" value="Add">
+    </form>
 </body>
 </html>
