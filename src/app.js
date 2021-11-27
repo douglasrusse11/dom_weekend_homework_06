@@ -3,12 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector('#add-animal-form').addEventListener('submit', handleSubmit)
 })
 
-const handleSubmit = function (event) {
+const handleSubmit = (event) => {
     event.preventDefault()
     const newListItem = createListItem(event.target)
     const list = document.getElementById('endangered-animals-list')
     addListItem(list, newListItem)
-    this.reset()
+    event.target.reset()
 }
 
 const createListItem = function (form) {
@@ -32,10 +32,10 @@ const createDeleteButton = () => {
     deleteButton.addEventListener('click', handleDeleteAll)
 }
 
-const handleDeleteAll = function () {
+const handleDeleteAll = () => {
     const list = document.getElementById('endangered-animals-list')
         while (list.hasChildNodes()) {
             list.removeChild(list.firstChild)
         }
-        document.querySelector('body').removeChild(this)
+        document.querySelector('body').removeChild(event.target)
 }
