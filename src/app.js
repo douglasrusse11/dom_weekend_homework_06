@@ -82,9 +82,11 @@ const createSort = function () {
     sort.id = "list-sort"
     document.querySelector('h1').after(sort)
     sort.after(document.createElement('hr'))
-    sort.addEventListener('change', function () {
+    sort.addEventListener('change', handleSortChange)
+}
+    
+const handleSortChange = function (event) {
         const currentListItems = Array.from(list.childNodes)
-        console.log('sorting')
         switch (event.target.value) {
             case 'commonNameAsc':
                 currentListItems.sort(sortFunction(0))
@@ -107,9 +109,8 @@ const createSort = function () {
             }
         list.textContent = ''
         currentListItems.forEach(item => list.appendChild(item))
-        })
+        }
 
-}
 
 const sortFunction = function(index) {
     return (item1, item2) => {
@@ -146,32 +147,33 @@ const createFilter = function () {
     }
     filter.id = "list-filter"
     document.querySelector('#list-sort').after(filter)
-    filter.addEventListener('change', function () {
-        let newListItems = []
-        switch (event.target.value) {
-            case "all":
-                newListItems = listItems
-                break;
-            case "critical":
-                newListItems = listItems.filter(item => {
-                    return item.innerHTML.split('-')[2].trim() === "Critically Endangered"
-                })
-                break;
-            case "endangered":
-                newListItems = listItems.filter(item => {
-                    return item.innerHTML.split('-')[2].trim() === "Endangered"
-                })
-                break;
-            case "vulnerable":
-                newListItems = listItems.filter(item => {
-                    return item.innerHTML.split('-')[2].trim() === "Vulnerable"
-                })
-                break;
-            }
-            list.textContent = ''
-            newListItems.forEach(item => list.appendChild(item))
-    })
-
+    filter.addEventListener('change', handleFilterChange)
+}
+    
+const handleFilterChange = function () {
+    let newListItems = []
+    switch (event.target.value) {
+        case "all":
+            newListItems = listItems
+            break;
+        case "critical":
+            newListItems = listItems.filter(item => {
+                return item.innerHTML.split('-')[2].trim() === "Critically Endangered"
+            })
+            break;
+        case "endangered":
+            newListItems = listItems.filter(item => {
+                return item.innerHTML.split('-')[2].trim() === "Endangered"
+            })
+            break;
+        case "vulnerable":
+            newListItems = listItems.filter(item => {
+                return item.innerHTML.split('-')[2].trim() === "Vulnerable"
+            })
+            break;
+        }
+        list.textContent = ''
+        newListItems.forEach(item => list.appendChild(item))
 }
 
 const amurLeopard = {
