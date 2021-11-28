@@ -22,6 +22,8 @@ const handleSubmit = (event) => {
 const createListItem = function (form) {
     const newListItem = document.createElement('li')
     newListItem.textContent = `${form.commonName.value} - ${form.scientificName.value} - ${form.conservationStatus.value}`
+    const test = {"Vulnerable": "vulnerable", "Endangered": "endangered", "Critically Endangered": "criticallyEndangered"}
+    newListItem.classList.add(`${test[form.conservationStatus.value]}`)
     return newListItem
 }
 
